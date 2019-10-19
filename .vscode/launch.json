@@ -1,0 +1,17 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/project2Files/server.js",
+            "env": {
+                "JAWSDB_URL": "mysql://trc8acr9mxjzftxo:btov8lfgi2fn0pa1@lmag6s0zwmcswp5w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/v6hzqwgbdkv9r5ob"
+            }
+        }
+    ]
+}
