@@ -39,10 +39,10 @@ app.get("/login/facebook",
   passport.authenticate("facebook"));
 
 app.get("/return",
-  passport.authenticate("facebook", { failureRedirect: "/fail" }),
+  passport.authenticate("facebook", { failureRedirect: "/" }),
   function (req, res) {
     console.log("success, bitches");
-    res.redirect("/");
+    res.redirect("/my-home");
   })
 
 // Handlebars
@@ -62,6 +62,10 @@ app.set("views", path.join(__dirname, "views"));
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+
+app.use((req, res, next) => {
+  res.status(404).send("<h1>404</h1>");
+});
 
 let syncOptions = { force: false };
 

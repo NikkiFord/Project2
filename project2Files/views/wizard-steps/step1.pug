@@ -1,0 +1,31 @@
+#step1.modal-dialog(role='document')
+  .modal-content
+    .modal-header
+      h5#exampleModalLabel.modal-title Where are you visiting?
+    .modal-body
+      h1 Do some cool weather API stuff!
+    .modal-footer
+      button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+      button#skip.btn.btn-link(type='button') skip this step
+      button#next.btn.btn-primary(type='button') Next
+  script.
+    (function () {
+      const $skipBtn = $("button#skip");
+      const $nextBtn = $("button#next");
+      const $wizardModal = $("#wizardModal");
+​
+      $skipBtn.click(() => {
+        $.get("/wizard-steps/step3", (response) => {
+          $wizardModal.html(response);
+        });
+      });
+​
+      $nextBtn.click(() => {
+        $.get("/wizard-steps/step2", (response) => {
+          $wizardModal.html(response);
+        });
+      });
+    })();
+
+
+

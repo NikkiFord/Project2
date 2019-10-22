@@ -1,0 +1,33 @@
+#step3.modal-dialog(role='document')
+  .modal-content
+    .modal-header
+      h5#exampleModalLabel.modal-title Don't forget the essentials!
+    .modal-body
+      h1 Show some suggested essential items.
+    .modal-footer
+      button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+      button#previous.btn.btn-secondary(type='button') Previous
+      button#finish.btn.btn-primary(type='button') Finish
+  script.
+    (function () {
+      const $previousBtn = $("button#previous");
+      const $skipBtn = $("button#skip");
+      const $finishBtn = $("button#finish");
+      const $wizardModal = $("#wizardModal");
+​
+      $previousBtn.click(() => {
+        $.get("/wizard-steps/step2", (response) => {
+          $wizardModal.html(response);
+        });
+      });
+​
+      $finishBtn.click(() => {
+        $wizardModal.modal("hide");
+        //- $.get("/wizard-steps/step4", (response) => {
+        //-   $wizardModal.modal("hide");
+        //-   $wizardModal.html(response);
+        //-   $wizardModal.modal("show");
+        //- });
+      });
+    })();
+
