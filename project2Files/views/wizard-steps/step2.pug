@@ -1,0 +1,31 @@
+#step2.modal-dialog(role='document')
+  .modal-content
+    .modal-header
+      h5#exampleModalLabel.modal-title Looks like the weather where you're going is blah blah
+    .modal-body
+      h1 Show some suggested items based on weather.
+    .modal-footer
+      button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+      button#previous.btn.btn-secondary(type='button') Previous
+      button#next.btn.btn-primary(type='button') Next
+  script.
+    (function () {
+      const $previousBtn = $("button#previous");
+      const $skipBtn = $("button#skip");
+      const $nextBtn = $("button#next");
+      const $wizardModal = $("#wizardModal");
+​
+      $previousBtn.click(() => {
+        $.get("/wizard-steps/step1", (response) => {
+          $wizardModal.html(response);
+        });
+      });
+​
+      $nextBtn.click(() => {
+        $.get("/wizard-steps/step3", (response) => {
+          $wizardModal.html(response);
+        });
+      });
+    })();
+
+
