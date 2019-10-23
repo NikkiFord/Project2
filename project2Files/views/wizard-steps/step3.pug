@@ -3,7 +3,10 @@
     .modal-header
       h5#exampleModalLabel.modal-title Don't forget the essentials!
     .modal-body
-      h1 Show some suggested essential items.
+      table#essentials
+        tr
+          th Select
+          th Name
     .modal-footer
       button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
       button#previous.btn.btn-secondary(type='button') Previous
@@ -14,14 +17,22 @@
       const $skipBtn = $("button#skip");
       const $finishBtn = $("button#finish");
       const $wizardModal = $("#wizardModal");
-​
+      const $essentialsTable = $("table#essentials");
+      let essentialItems;
+
       $previousBtn.click(() => {
         $.get("/wizard-steps/step2", (response) => {
           $wizardModal.html(response);
         });
       });
-​
+
       $finishBtn.click(() => {
+        let checkedItems = [];
+        essentials.forEach((item) => {
+          let checked = $(`input#${item.id}`).checked();
+          if (checked) checkedItems.push(item);
+        });
+        //- $.post() ----- Make a call to the server to save which items they selected.
         $wizardModal.modal("hide");
         //- $.get("/wizard-steps/step4", (response) => {
         //-   $wizardModal.modal("hide");
@@ -29,5 +40,16 @@
         //-   $wizardModal.modal("show");
         //- });
       });
-    })();
 
+      $.get("/api/packingItems/essentials", (items) => {
+        essentialItems = items;
+        essentialItems.forEach((item) => {
+          $essentialsTable.append(`
+            <tr>
+              <td><input id="${item.id}" type="checkbox"></td>
+              <td>${item.item_name}</td>
+            </tr>
+          `);
+        });
+      });
+    })();

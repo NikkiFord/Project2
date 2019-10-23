@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  let ToDoList = sequelize.define("ToDoList", {
+  let PackingItem = sequelize.define("PackingItem", {
     item_name: {
       type:DataTypes.STRING,
       allowNull: false,
@@ -19,5 +19,5 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false
     }
   });
-  return ToDoList;
+  return PackingItem;
 };
