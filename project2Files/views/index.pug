@@ -1,33 +1,10 @@
 extends layout
-​
+
 block content
-  //- h1= title
-  //- p Welcome to #{title}
-  //- ol
-  //-   each item in packingList
-  //-     li Name: #{item.name} | Category: #{item.category}
   div
     button login
     button back
   div
     button#startWizard.btn.btn-primary Start Wizard
     #wizardModal.modal.fade(tabindex='-1' role='dialog')
-      //- #step1.modal-dialog(role='document')
-      //-   .modal-content
-      //-     .modal-header
-      //-       h5#exampleModalLabel.modal-title New message
-      //-       button.close(type='button' data-dismiss='modal' aria-label='Close')
-      //-         span(aria-hidden='true') &times;
-      //-     .modal-body
-      //-       form
-      //-         .form-group
-      //-           label.col-form-label(for='recipient-name') Recipient:
-      //-           input#recipient-name.form-control(type='text')
-      //-         .form-group
-      //-           label.col-form-label(for='message-text') Message:
-      //-           textarea#message-text.form-control
-      //-     .modal-footer
-      //-       button.btn.btn-secondary(type='button' data-dismiss='modal') Close
-      //-       button.btn.btn-primary(type='button') Send message
-
-button.weatherApi api
+  button.weatherApi api

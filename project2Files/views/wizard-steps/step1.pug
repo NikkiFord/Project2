@@ -13,19 +13,16 @@
       const $skipBtn = $("button#skip");
       const $nextBtn = $("button#next");
       const $wizardModal = $("#wizardModal");
-​
+
       $skipBtn.click(() => {
         $.get("/wizard-steps/step3", (response) => {
           $wizardModal.html(response);
         });
       });
-​
+
       $nextBtn.click(() => {
         $.get("/wizard-steps/step2", (response) => {
           $wizardModal.html(response);
         });
       });
     })();
-
-
-
