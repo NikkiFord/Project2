@@ -3,7 +3,16 @@
     .modal-header
       h5#exampleModalLabel.modal-title Where are you visiting?
     .modal-body
-      h1 Do some cool weather API stuff!
+      form
+            .form-row
+                .form-group.col-md-6
+                label(for='inputCity') City
+                input#inputCity.form-control(type='text')
+                .form-group.col-md-4
+                label(for='inputCountry') Country
+                select#country.form-control
+                    each country in countries
+                        option= country.code
     .modal-footer
       button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
       button#skip.btn.btn-link(type='button') skip this step
