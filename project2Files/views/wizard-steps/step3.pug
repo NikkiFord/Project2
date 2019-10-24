@@ -27,12 +27,15 @@
       });
 
       $finishBtn.click(() => {
-        let checkedItems = [];
+        let checkedEssentials = [];
         essentials.forEach((item) => {
-          let checked = $(`input#${item.id}`).checked();
-          if (checked) checkedItems.push(item);
+          let checked = $(`input#${item.id}`).prop("checked");
+          if (checked) checkedEssentials.push(item);
         });
-        //- $.post() ----- Make a call to the server to save which items they selected.
+        let checkedWeatherItems = JSON.parse(localStorage.getItem("checked-weather-items"));
+        
+        $.post()
+
         $wizardModal.modal("hide");
         //- $.get("/wizard-steps/step4", (response) => {
         //-   $wizardModal.modal("hide");
@@ -46,7 +49,7 @@
         essentialItems.forEach((item) => {
           $essentialsTable.append(`
             <tr>
-              <td><input id="${item.id}" type="checkbox"></td>
+              <td><input id="${item.id}" checked type="checkbox"></td>
               <td>${item.item_name}</td>
             </tr>
           `);

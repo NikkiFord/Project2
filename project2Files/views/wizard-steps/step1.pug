@@ -10,9 +10,9 @@
                 input#inputCity.form-control(type='text')
                 .form-group.col-md-4
                 label(for='inputCountry') Country
-                select#country.form-control
+                select#inputCountry.form-controlv
                     each country in countries
-                        option= country.code
+                        option= country.name
     .modal-footer
       button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
       button#skip.btn.btn-link(type='button') skip this step
@@ -22,6 +22,8 @@
       const $skipBtn = $("button#skip");
       const $nextBtn = $("button#next");
       const $wizardModal = $("#wizardModal");
+      const $cityInput = $("#inputCity");
+      const $countryInput = $("#inputCountry");
 
       $skipBtn.click(() => {
         $.get("/wizard-steps/step3", (response) => {
@@ -30,8 +32,59 @@
       });
 
       $nextBtn.click(() => {
-        $.get("/wizard-steps/step2", (response) => {
-          $wizardModal.html(response);
+        let country = $countryInput.val();
+        let city = $cityInput.val();
+        let queryURL = "https://api.openweathermap.org/data/2.5/forecast";
+        $.ajax({
+            url: queryURL,
+            data: {
+              appid: "1e73dab239aeea036401b8265c2ac676",
+              q:`${city},${country}`,
+              units: "imperial"
+            },
+            method: "GET"
+        }).then(function (forecast) {
+          let minTemp, maxTemp;
+          forecast.list.forEach(item => {
+            let min = item.main.temp_min;
+            let max = item.main.temp_max;
+            if(!minTemp || min < minTemp) minTemp = min;
+            if(!maxTemp || max > maxTemp) maxTemp = max;
+          });
+
+          const categories = [];
+
+          // minTemp 17 & maxTemp 38
+          if (maxTemp > 70) categories.push("hot");
+          if (maxTemp > 50 && minTemp < 75) categories.push("warm");
+          if (maxTemp > 30 && minTemp < 50) categories.push("cold");
+          if (minTemp < 30) categories.push("colder");
+
+          localStorage.setItem("step2-header", `It looks like the weather where you're going ranges from ${Math.ceil(minTemp)}&deg;F to ${Math.ceil(maxTemp)}&deg;F over the next 5 days. Here are some items we suggest!`);
+
+          let promises = categories.map((category) => {
+            return new Promise((resolve, reject) => {
+              $.get(`/api/packingItems/${category}`, resolve).fail(reject);
+            });
+          });
+          return Promise.all(promises);
+        })
+        .then((results) => {
+          results = results.reduce((arr, result) => arr.concat(result), []);
+          localStorage.setItem("weather-suggestions", JSON.stringify(results));
+          let step = "step2";
+          if (results.length === 0) {
+            step = "step3";
+          }
+          $.get(`/wizard-steps/${step}`, (response) => {
+            $wizardModal.html(response);
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+          $.get("/wizard-steps/step3", (response) => {
+            $wizardModal.html(response);
+          });
         });
       });
     })();
