@@ -1,3 +1,22 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+*{
+  box-sizing: border-box;
+}
+
+html{
+  /* background-image: url(./images/pack-it-bg.svg); */
+  background-color: #1B1F38;
+  /* border: 5px solid salmon; */
+  height: auto;
+  padding-top: 0px;
+
+}
+
+.background{
+  height: 98vh;
+  border: sandybrown solid 2px;
+}
+
