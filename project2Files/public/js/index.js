@@ -16,19 +16,4 @@ $(() => {
       $listViewBtn.html(response);
     })
   })
-  const $weatherBtn = $(".weatherApi");
-
-  $weatherBtn.click(() => {
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?";
-    $.ajax({
-        url: queryURL,
-        data: {
-          appid: "1e73dab239aeea036401b8265c2ac676",
-          q:"London"
-        },
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-    })
-  })
 })

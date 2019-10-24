@@ -6,10 +6,10 @@ module.exports = function(app) {
   app.get("/api/packingItems/:category", (req, res) => {
     db.PackingItem.findAll({
       where: {
-        category: "essentials"
+        category: req.params.category
       }
-    }).then((essentialItems) => {
-      res.json(essentialItems);
+    }).then((items) => {
+      res.json(items);
     }).catch((err) => res.status(500).send(err.stack));
   });
 

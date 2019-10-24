@@ -1,9 +1,12 @@
 #step2.modal-dialog(role='document')
   .modal-content
     .modal-header
-      h5#exampleModalLabel.modal-title Looks like the weather where you're going is blah blah
+      h5#step2Header.modal-title
     .modal-body
-      h1 Show some suggested items based on weather.
+      table#weatherItems
+          tr
+            th Select
+            th Name
     .modal-footer
       button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
       button#previous.btn.btn-secondary(type='button') Previous
@@ -14,6 +17,21 @@
       const $skipBtn = $("button#skip");
       const $nextBtn = $("button#next");
       const $wizardModal = $("#wizardModal");
+      const $weatherItemsTable = $("table#weatherItems");
+      const $step2Header = $("#step2Header");
+
+      const step2Header = localStorage.getItem("step2-header");
+      $step2Header.html(step2Header);
+
+      const weatherSuggestions = JSON.parse(localStorage.getItem("weather-suggestions"));
+      weatherSuggestions.forEach((item) => {
+        $weatherItemsTable.append(`
+          <tr>
+            <td><input id="${item.id}" type="checkbox"></td>
+            <td>${item.item_name}</td>
+          </tr>
+        `);
+      });
 
       $previousBtn.click(() => {
         $.get("/wizard-steps/step1", (response) => {
@@ -23,11 +41,12 @@
 
       $nextBtn.click(() => {
           //store checked weather items to save to server later
-        //-  let checkedItems = [];
-        //-  weatherItems.forEach((item) => {
-        //-   let checked = $(`input#${item.id}`).checked();
-        //-   if (checked) checkedItems.push(item);
-        //- }); 
+        let checkedItems = [];
+        weatherSuggestions.forEach((item) => {
+          let checked = $(`input#${item.id}`).prop("checked");
+          if (checked) checkedItems.push(item);
+        });
+        localStorage.setItem("checked-weather-items", JSON.stringify(checkedItems));
         $.get("/wizard-steps/step3", (response) => {
           $wizardModal.html(response);
         });
