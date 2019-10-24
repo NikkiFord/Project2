@@ -49,15 +49,6 @@ app.get("/return",
     res.redirect("/my-home");
   })
 
-// Handlebars
-// app.engine(
-//   "handlebars",
-//   exphbs({
-//     defaultLayout: "main"
-//   })
-// );
-// app.set("view engine", "handlebars");
-
 
 //pug
 app.set("view engine", "pug");
@@ -89,5 +80,6 @@ db.sequelize.sync(syncOptions).then(function () {
     );
   });
 });
+
 
 module.exports = app;

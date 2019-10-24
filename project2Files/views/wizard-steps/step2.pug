@@ -22,6 +22,12 @@
       });
 
       $nextBtn.click(() => {
+          //store checked weather items to save to server later
+        //-  let checkedItems = [];
+        //-  weatherItems.forEach((item) => {
+        //-   let checked = $(`input#${item.id}`).checked();
+        //-   if (checked) checkedItems.push(item);
+        //- }); 
         $.get("/wizard-steps/step3", (response) => {
           $wizardModal.html(response);
         });
