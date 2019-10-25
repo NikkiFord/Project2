@@ -20,8 +20,8 @@ html{
 
 .background{
   height: 98.5vh;
-  border: #1B1F38 solid 1px;
-  background-color: #1B1F38;
+  /* border: #1B1F38 solid 1px; */
+  background-color: #171830;
 }
 
 .flex-container{
@@ -50,10 +50,12 @@ html{
 }
 
 .giph{
-  padding-top: 25%;
+  /* padding-top: 25%; */
   padding-left: 20%;
   padding-right: 25%;
   width: 100%;
+  height: auto;
+  border: none;
 }
 
 .btn{
