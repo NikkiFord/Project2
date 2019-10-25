@@ -4,6 +4,8 @@
 
 *{
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
 }
 
 html{
@@ -25,32 +27,58 @@ html{
 .flex-container{
   display: flex;
   flex-direction: row;
-  border: solid salmon;
+  /* border: solid salmon; */
   height: 100%;
 }
 
 .info-text{
-  border: solid salmon;
+  /* border: solid salmon; */
   width: 50%;
 }
 
 .gif-container{
-  border: solid red;
+  /* border: solid red; */
   width: 50%;
 }
 
 .splash-text{
   text-align: left;
-  padding-top: 50%;
+  padding-top: 40%;
   padding-left: 25%;
   padding-right: 25%;
   color: white;
 }
 
 .giph{
-  padding-top: 30%;
+  padding-top: 25%;
   padding-left: 20%;
   padding-right: 25%;
   width: 100%;
-  height: auto;
+}
+
+.btn{
+  margin-top: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  background-color: #FF057C;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 10pt;
+}
+
+.btn:hover{
+  transition: ease-in;
+  background-color: #8D0B93;
+}
+
+.title{
+  text-align: left;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
 }
