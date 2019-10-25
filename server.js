@@ -8,7 +8,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 passport.use(new FacebookStrategy({
   clientID: "2140354492935364",
   clientSecret: "8bc3886bc55f326e798bd109ca767bc5",
-  callbackURL: "/return"
+  callbackURL: "https://pack-it-now.herokuapp.com/return"
 },
   function (accessToken, refreshToken, profile, cb) {
     return cb(null, profile)
@@ -43,10 +43,10 @@ app.get("/login/facebook",
   passport.authenticate("facebook"));
 
 app.get("/return",
-  passport.authenticate("facebook", { failureRedirect: "http://trump.com" }),
+  passport.authenticate("facebook", { failureRedirect: "/" }),
   function (req, res) {
-    res.redirect("https://google.com");
-  })
+    res.redirect("/home");
+  });
 
 
 //pug
