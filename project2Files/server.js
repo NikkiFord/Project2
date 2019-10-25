@@ -46,7 +46,7 @@ app.get("/return",
   passport.authenticate("facebook", { failureRedirect: "/" }),
   function (req, res) {
     console.log("success, bitches");
-    res.redirect("/my-home");
+    res.redirect("/home");
   })
 
 
