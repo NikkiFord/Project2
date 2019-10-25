@@ -43,10 +43,9 @@ app.get("/login/facebook",
   passport.authenticate("facebook"));
 
 app.get("/return",
-  passport.authenticate("facebook", { failureRedirect: "/" }),
+  passport.authenticate("facebook", { failureRedirect: "http://trump.com" }),
   function (req, res) {
-    console.log("success, bitches");
-    res.redirect("/home");
+    res.redirect("https://google.com");
   })
 
 
