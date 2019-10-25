@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function (app) {
   // Load index page
-  app.get("/", function (req, res, next) {
+  app.get("/home", function (req, res, next) {
     res.render("index", {
       pageTitle: "Home"
     });
