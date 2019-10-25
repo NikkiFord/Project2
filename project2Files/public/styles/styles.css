@@ -22,3 +22,26 @@ html{
   background-color: #1B1F38;
 }
 
+.flex-container{
+  display: flex;
+  flex-direction: row;
+  border: solid salmon;
+  height: 100%;
+}
+
+.info-text{
+  border: solid salmon;
+  width: 50%;
+}
+
+.gif-container{
+  border: solid red;
+}
+
+.splash-text{
+  text-align: left;
+  padding-top: 50%;
+  padding-left: 25%;
+  padding-right: 25%;
+  color: white;
+}
