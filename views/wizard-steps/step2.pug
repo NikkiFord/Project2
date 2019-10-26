@@ -4,9 +4,9 @@
       h5#step2Header.modal-title
     .modal-body
       table#weatherItems
-          tr
-            th Select
-            th Name
+        tr
+          th Select
+          th Name
     .modal-footer
       button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
       button#previous.btn.btn-secondary(type='button') Previous
@@ -40,7 +40,7 @@
       });
 
       $nextBtn.click(() => {
-          //store checked weather items to save to server later
+        //store checked weather items to save to server later
         let checkedItems = [];
         weatherSuggestions.forEach((item) => {
           let checked = $(`input#${item.id}`).prop("checked");

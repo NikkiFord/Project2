@@ -20,6 +20,18 @@
       const $essentialsTable = $("table#essentials");
       let essentialItems;
 
+      $.get("/api/packingItems/essentials", (items) => {
+        essentialItems = items;
+        essentialItems.forEach((item) => {
+          $essentialsTable.append(`
+            <tr>
+              <td><input id="${item.id}" checked type="checkbox"></td>
+              <td>${item.item_name}</td>
+            </tr>
+          `);
+        });
+      });
+
       $previousBtn.click(() => {
         $.get("/wizard-steps/step2", (response) => {
           $wizardModal.html(response);
@@ -33,26 +45,14 @@
           if (checked) checkedEssentials.push(item);
         });
         let checkedWeatherItems = JSON.parse(localStorage.getItem("checked-weather-items"));
-        
-        $.post()
+        let city = JSON.parse(localStorage.getItem("city"));
 
-        $wizardModal.modal("hide");
-        //- $.get("/wizard-steps/step4", (response) => {
-        //-   $wizardModal.modal("hide");
-        //-   $wizardModal.html(response);
-        //-   $wizardModal.modal("show");
-        //- });
-      });
-
-      $.get("/api/packingItems/essentials", (items) => {
-        essentialItems = items;
-        essentialItems.forEach((item) => {
-          $essentialsTable.append(`
-            <tr>
-              <td><input id="${item.id}" checked type="checkbox"></td>
-              <td>${item.item_name}</td>
-            </tr>
-          `);
+        $.post("/api/save-trip", {
+          location: city,
+          packingItems: [].concat(checkedWeatherItems, checkedEssentials)
+        }, () => {
+          $wizardModal.modal("hide");
         });
       });
+
     })();

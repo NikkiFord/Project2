@@ -7,14 +7,22 @@ module.exports = function(app) {
   });
 
   // Get packing items by category
-  app.get("/api/packingItems/:category", (req, res) => {
+  app.get("/api/packingItems/:category", (req, res, next) => {
     db.PackingItem.findAll({
       where: {
         category: req.params.category
       }
     }).then((items) => {
       res.json(items);
-    }).catch((err) => res.status(500).send(err.stack));
+    }).catch(next);
+  });
+
+  // Save user's trip to database.
+  app.post("/api/save-trip", (req, res) => {
+    db.UserList.create({
+
+    });
+    res.status(200).send();
   });
 
   // Create a new example

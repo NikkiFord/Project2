@@ -19,6 +19,8 @@
       button#next.btn.btn-primary(type='button') Next
   script.
     (function () {
+      localStorage.clear();
+
       const $skipBtn = $("button#skip");
       const $nextBtn = $("button#next");
       const $wizardModal = $("#wizardModal");
@@ -34,6 +36,7 @@
       $nextBtn.click(() => {
         let country = $countryInput.val();
         let city = $cityInput.val();
+        localStorage.setItem("city", city);
         let queryURL = "https://api.openweathermap.org/data/2.5/forecast";
         $.ajax({
             url: queryURL,
