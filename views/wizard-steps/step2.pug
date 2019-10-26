@@ -4,9 +4,6 @@
       h5#step2Header.modal-title
     .modal-body
       table#weatherItems
-        tr
-          th Select
-          th Name
     .modal-footer
       button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
       button#previous.btn.btn-secondary(type='button') Previous
@@ -27,7 +24,7 @@
       weatherSuggestions.forEach((item) => {
         $weatherItemsTable.append(`
           <tr>
-            <td><input id="${item.id}" type="checkbox"></td>
+            <td class="text-center"><input id="${item.id}" type="checkbox">&nbsp;&nbsp;&nbsp;</td>
             <td>${item.item_name}</td>
           </tr>
         `);

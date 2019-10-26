@@ -1,12 +1,24 @@
 extends layout
 
 block content
-  //- h1 Welcome, #{name}!
-  div
-    button login
-    button back
-  div
-    button#startWizard.btn.btn-primary Start Wizard
-    #wizardModal.modal.fade(tabindex='-1' role='dialog')
-  button.weatherApi api
-  button#listView list
+  div.container.mt-4(style='background-color: #171830;')
+    if trips.length > 0
+      div.mb-4.pb-5
+        div.header.m-4.pb-2(style='border-bottom: 0.5px solid #FF057C;')
+          div.d-flex.justify-content-between
+            h6.text-light.mr-2.pt-3.text-uppercase(style='letter-spacing: 2px;;') Your Trips
+            button#addTrip.btn.btn-outline-light.pl-4.pr-4.m-1(type='submit' style='border-radius: 32px;') Add Trip
+
+        each trip in trips
+          .card.ml-4.mb-3.bg-secondary.text-white(style='max-width: 18rem; display: inline-block; width: 250px; vertical-align: top;')
+            .card-header(style="font-size: 25px;")= trip.location
+            .card-body.text-white.p-3
+              ol(style="padding-left: 15px;")
+                each item in trip.items
+                  li= item.item_name
+    else
+      div(style="height:500px;").text-center
+        h1.text-light.mr-2.pt-3 You have no trips yet
+        button#addTrip.btn.btn-outline-light.pl-4.pr-4.m-1(type='submit' style='border-radius: 32px;') Add One Now!
+
+  #wizardModal.modal.fade(tabindex='-1' role='dialog')

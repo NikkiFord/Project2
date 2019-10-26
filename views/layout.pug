@@ -13,7 +13,7 @@ html(style='background-color: #171830;')
       a.navbar-brand.text-light.title Pack It Now
       form.form-inline
         a.navbar-brand.text-right.text-light.font-weight-lighter(style="background-color: #171830;") Welcome, #{name}!
-        button.btn.btn-outline-light.my-2.my-sm-0.logout.pr-4.pl-4(type="submit" style="border-radius: 32px;" onclick="window.location.href='/logout'") Logout
+        a.btn.btn-outline-light.my-2.my-sm-0.logout.pr-4.pl-4(style="border-radius: 32px;" href="/logout") Logout
     div.pb-1.mb-4(style="background-image: linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%);")
 
     block content

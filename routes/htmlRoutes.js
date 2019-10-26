@@ -10,19 +10,25 @@ module.exports = function (app) {
   // Load home page
   app.get("/home", (req, res, next) => {
     if (!req.user) return res.redirect("/");
-    res.render("home", {
-      name: req.user.displayName.split(" ")[0],
-      pageTitle: "Home"
-    });
+    db.UserList.findAll({
+      where: {
+        userId: req.user.id
+      }
+    }).then(trips => {
+      res.render("home", {
+        name: req.user.displayName.split(" ")[0],
+        pageTitle: "My Trips",
+        trips: trips.map(trip => {
+          trip.items = JSON.parse(trip.items);
+          return trip;
+        })
+      });
+    })
   });
 
   app.get("/logout", (req, res, next) => {
     req.logout();
     res.redirect("/");
-  });
-
-  app.get("/test", (req, res, next) => {
-    res.render("test");
   });
 
   app.get("/wizard-steps/:step", (req, res) => {
