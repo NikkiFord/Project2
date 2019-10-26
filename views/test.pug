@@ -1,20 +1,37 @@
 extends layout
 
 block content
-    div.container
-        div.row.background-splash.mb-4
+
+    div.container.mt-4(style='background-color: #171830;')
+        div.mb-4
             //- card.text-white.bg-dark.mb-3.col-sm(style='max-width: 18rem;')
             //-     .card-header Header
             //-     .card-body
             //-      h5.card-title Dark card title
             //-          p.card-text
             //-          | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-            div.header.m-4
-                h1 your
-                .card.border-success.mb-3.mt-4(style='max-width: 18rem;')
-                    .card-header.bg-transparent.border-success.text-success#card-color Header
-                    .card-body.text-success
+            div.header.m-4.pb-2(style='border-bottom: 0.5px solid #FF057C;')
+                div.d-flex.justify-content-between
+                    h6.text-light.mr-2.pt-3.text-uppercase(style='letter-spacing: 2px;;') Your Trips
+                    button.btn.btn-outline-light.pl-4.pr-4.m-1(type='submit')(style='border-radius: 32px;') Add Trip
+                    //- .card.border-white.mb-3.mt-4(style='max-width: 18rem;')
+                    //-     .card-header.bg-transparent.border-white.text-success#card-color Header
+                    //-     .card-body.text-success.bg-transparent
+                    //-         p.card-text
+                    //-         | Some quick example text to build on the card title and make up the bulk of the cards content.
+                    //-     .bg-transparent
+                    //- card.border-light.mb-3(style='max-width: 18rem;')
+                    //-     .card-header.text-light Header
+                    //-     .card-body.text-light
+                    //-         h5.card-title Dark card title
+                    //-         p.card-text
+                    //-         | Some quick example text to build on the card title and make up   
+
+            .card.ml-4.mb-3.bg-secondary.text-white(style='max-width: 18rem;')
+                .card-header Header
+                .card-body.text-white
+                    h5.card-title Dark card title
                         p.card-text
-                        | Some quick example text to build on the card title and make up the bulk of the cards content.
-                    .bg-transparent
-                            
+                        | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
+     
+

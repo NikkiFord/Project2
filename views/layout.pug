@@ -1,5 +1,5 @@
 doctype html
-html
+html(style='background-color: #171830;')
   head
     title= pageTitle
     //- link(rel='stylesheet', href="../public/styles/style.css")
@@ -9,12 +9,13 @@ html
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
     script(src="js/index.js")
     link(rel="stylesheet" href= "./public/styles/style.css")
-  body.background-color
-    nav.navbar.navbar-dark.bg-dark
-      a.navbar-brand.text-light.bg-dark.title Pack It Now
+  body.background-color(style='background-color: #171830;')
+    nav.navbar.navbar-dark(style='background-color: #171830;')
+      a.navbar-brand.text-light.title Pack It Now 
       form.form-inline
-        a.navbar-brand.text-right.text-light.bg-dark.font-weight-lighter Welcome, #{name}!
-        button.btn.btn-outline-light.my-2.my-sm-0.logout(type='submit') Logout
+        a.navbar-brand.text-right.text-light.font-weight-lighter(style='background-color: #171830;') Welcome, #{name}!
+        button.btn.btn-outline-light.my-2.my-sm-0.logout.pr-4.pl-4(type='submit')(style='border-radius: 32px;') Logout
+    div.pb-1.mb-4(style='background-image: linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%);')
         
     
     block content
