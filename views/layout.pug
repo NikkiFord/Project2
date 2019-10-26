@@ -2,20 +2,18 @@ doctype html
 html(style='background-color: #171830;')
   head
     title= pageTitle
-    //- link(rel='stylesheet', href="../public/styles/style.css")
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+    link(rel="stylesheet" href= "styles/styles.css")
     script(src="https://code.jquery.com/jquery-3.3.1.min.js")
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
-    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous")
     script(src="js/index.js")
-    link(rel="stylesheet" href= "./public/styles/style.css")
-  body.background-color(style='background-color: #171830;')
-    nav.navbar.navbar-dark(style='background-color: #171830;')
-      a.navbar-brand.text-light.title Pack It Now 
+  body.background-color(style="background-color: #171830;")
+    nav.navbar.navbar-dark(style="background-color: #171830;")
+      a.navbar-brand.text-light.title Pack It Now
       form.form-inline
-        a.navbar-brand.text-right.text-light.font-weight-lighter(style='background-color: #171830;') Welcome, #{name}!
-        button.btn.btn-outline-light.my-2.my-sm-0.logout.pr-4.pl-4(type='submit')(style='border-radius: 32px;') Logout
-    div.pb-1.mb-4(style='background-image: linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%);')
-        
-    
+        a.navbar-brand.text-right.text-light.font-weight-lighter(style="background-color: #171830;") Welcome, #{name}!
+        a.btn.btn-outline-light.my-2.my-sm-0.logout.pr-4.pl-4(style="border-radius: 32px;" href="/logout") Logout
+    div.pb-1.mb-4(style="background-image: linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%);")
+
     block content

@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     items: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         len: [1,10000]

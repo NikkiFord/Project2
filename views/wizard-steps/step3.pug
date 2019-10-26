@@ -4,9 +4,6 @@
       h5#exampleModalLabel.modal-title Don't forget the essentials!
     .modal-body
       table#essentials
-        tr
-          th Select
-          th Name
     .modal-footer
       button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
       button#previous.btn.btn-secondary(type='button') Previous
@@ -25,7 +22,7 @@
         essentialItems.forEach((item) => {
           $essentialsTable.append(`
             <tr>
-              <td><input id="${item.id}" checked type="checkbox"></td>
+              <td class="text-center"><input id="${item.id}" checked type="checkbox">&nbsp;&nbsp;&nbsp;</td>
               <td>${item.item_name}</td>
             </tr>
           `);
@@ -40,18 +37,18 @@
 
       $finishBtn.click(() => {
         let checkedEssentials = [];
-        essentials.forEach((item) => {
+        essentialItems.forEach((item) => {
           let checked = $(`input#${item.id}`).prop("checked");
           if (checked) checkedEssentials.push(item);
         });
         let checkedWeatherItems = JSON.parse(localStorage.getItem("checked-weather-items"));
-        let city = JSON.parse(localStorage.getItem("city"));
+        let city = localStorage.getItem("city");
 
         $.post("/api/save-trip", {
           location: city,
-          packingItems: [].concat(checkedWeatherItems, checkedEssentials)
+          packingItems: JSON.stringify([].concat(checkedWeatherItems, checkedEssentials))
         }, () => {
-          $wizardModal.modal("hide");
+          window.location.href = "/home";
         });
       });
 
