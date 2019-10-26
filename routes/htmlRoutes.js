@@ -3,7 +3,8 @@ var db = require("../models");
 module.exports = function (app) {
   // Load index page
   app.get("/home", function (req, res, next) {
-    res.render("index", {
+    res.render("home", {
+      name: req.user.displayName.split(" ")[0],
       pageTitle: "Home"
     });
   });

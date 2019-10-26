@@ -8,10 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/project2Files/server.js",
-            "env": {
-                "JAWSDB_URL": "mysql://trc8acr9mxjzftxo:btov8lfgi2fn0pa1@lmag6s0zwmcswp5w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/v6hzqwgbdkv9r5ob"
-            }
+            "program": "${workspaceFolder}/server.js"
         }
     ]
 }

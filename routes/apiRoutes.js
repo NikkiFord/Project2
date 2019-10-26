@@ -2,6 +2,10 @@ var db = require("../models");
 
 module.exports = function(app) {
 
+  app.get("/api/user", (req, res) => {
+    res.json(req.user);
+  });
+
   // Get packing items by category
   app.get("/api/packingItems/:category", (req, res) => {
     db.PackingItem.findAll({

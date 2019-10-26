@@ -8,7 +8,8 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 passport.use(new FacebookStrategy({
   clientID: "2140354492935364",
   clientSecret: "8bc3886bc55f326e798bd109ca767bc5",
-  callbackURL: "/return"
+  callbackURL: "http://localhost:3000/return"
+  //callbackURL: "https://pack-it-now.herokuapp.com/return"
 },
   function (accessToken, refreshToken, profile, cb) {
     return cb(null, profile)
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.static(path.join(__dirname, "public")));
+app.use(require('express-session')({ secret: 'bitches!', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -43,10 +45,10 @@ app.get("/login/facebook",
   passport.authenticate("facebook"));
 
 app.get("/return",
-  passport.authenticate("facebook", { failureRedirect: "http://trump.com" }),
+  passport.authenticate("facebook", { failureRedirect: "/" }),
   function (req, res) {
-    res.redirect("https://google.com");
-  })
+    res.redirect("/home");
+  });
 
 
 //pug
