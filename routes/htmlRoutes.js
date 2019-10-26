@@ -1,12 +1,17 @@
 var db = require("../models");
 
 module.exports = function (app) {
-  // Load index page
-  app.get("/home", function (req, res, next) {
+  // Load home page
+  app.get("/home", (req, res, next) => {
+    if (!req.user) res.redirect("/");
     res.render("home", {
       name: req.user.displayName.split(" ")[0],
       pageTitle: "Home"
     });
+  });
+
+  app.get("/test", (req, res, next) => {
+    res.render("test");
   });
 
   app.get("/wizard-steps/:step", (req, res) => {
@@ -259,7 +264,7 @@ module.exports = function (app) {
         ]})
   })
   app.get("/listView", (req, res) => {
-    // grab userlist const list = 
+    // grab userlist const list =
     res.render('listView');
   })
   // Load example page and pass in an example by id
