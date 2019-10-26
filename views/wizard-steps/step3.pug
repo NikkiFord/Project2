@@ -40,16 +40,16 @@
 
       $finishBtn.click(() => {
         let checkedEssentials = [];
-        essentials.forEach((item) => {
+        essentialItems.forEach((item) => {
           let checked = $(`input#${item.id}`).prop("checked");
           if (checked) checkedEssentials.push(item);
         });
         let checkedWeatherItems = JSON.parse(localStorage.getItem("checked-weather-items"));
-        let city = JSON.parse(localStorage.getItem("city"));
+        let city = localStorage.getItem("city");
 
         $.post("/api/save-trip", {
           location: city,
-          packingItems: [].concat(checkedWeatherItems, checkedEssentials)
+          packingItems: JSON.stringify([].concat(checkedWeatherItems, checkedEssentials))
         }, () => {
           $wizardModal.modal("hide");
         });

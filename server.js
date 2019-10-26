@@ -8,11 +8,11 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 passport.use(new FacebookStrategy({
   clientID: "2140354492935364",
   clientSecret: "8bc3886bc55f326e798bd109ca767bc5",
-  // callbackURL: "http://localhost:3000/return"
-  callbackURL: "https://pack-it-now.herokuapp.com/return"
+  callbackURL: "http://localhost:3000/return"
+  // callbackURL: "https://pack-it-now.herokuapp.com/return"
 },
   function (accessToken, refreshToken, profile, cb) {
-    return cb(null, profile)
+    return cb(null, profile);
   }
 ));
 
@@ -30,7 +30,7 @@ let app = express();
 let PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.url);

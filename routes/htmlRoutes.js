@@ -1,13 +1,24 @@
 var db = require("../models");
 
 module.exports = function (app) {
+  // Load splash page
+  app.get("/", (req, res, next) => {
+    if (req.user) return res.redirect("/home");
+    res.render("index");
+  });
+
   // Load home page
   app.get("/home", (req, res, next) => {
-    if (!req.user) res.redirect("/");
+    if (!req.user) return res.redirect("/");
     res.render("home", {
       name: req.user.displayName.split(" ")[0],
       pageTitle: "Home"
     });
+  });
+
+  app.get("/logout", (req, res, next) => {
+    req.logout();
+    res.redirect("/");
   });
 
   app.get("/test", (req, res, next) => {

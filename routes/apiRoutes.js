@@ -12,30 +12,27 @@ module.exports = function(app) {
       where: {
         category: req.params.category
       }
-    }).then((items) => {
+    }).then(items => {
       res.json(items);
     }).catch(next);
+  });
+
+  app.get("/api/trips", (req, res) => {
+    db.UserList.findAll().then(trips => {
+      res.json(trips.map(trip => {
+        trip.items = JSON.parse(trip.items);
+        return trip;
+      }));
+    });
   });
 
   // Save user's trip to database.
   app.post("/api/save-trip", (req, res) => {
     db.UserList.create({
-
-    });
-    res.status(200).send();
+      userId: req.user.id,
+      location: req.body.location,
+      items: req.body.packingItems
+    }).then(() => res.status(200).send());
   });
 
-  // Create a new example
-  // app.post("/api/examples", function(req, res) {
-  //   db.Example.create(req.body).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
-
-  // Delete an example by id
-  // app.delete("/api/examples/:id", function(req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
 };

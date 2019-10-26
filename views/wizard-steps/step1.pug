@@ -4,15 +4,18 @@
       h5#exampleModalLabel.modal-title Where are you visiting?
     .modal-body
       form
-            .form-row
-                .form-group.col-md-6
-                label(for='inputCity') City
-                input#inputCity.form-control(type='text')
-                .form-group.col-md-4
-                label(for='inputCountry') Country
-                select#inputCountry.form-controlv
-                    each country in countries
-                        option= country.name
+        .form-row
+          .form-group.col-md-6
+          label(for='inputCity') City
+          input#inputCity.form-control(type='text')
+          .form-group.col-md-4
+          label(for='inputCountry') Country
+          select#inputCountry.form-controlv
+            each country in countries
+              if country.code === "US"
+                option(selected)= country.name
+              else
+                option= country.name
     .modal-footer
       button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
       button#skip.btn.btn-link(type='button') skip this step
